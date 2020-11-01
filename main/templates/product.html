@@ -1,0 +1,252 @@
+{% extends 'index.html' %}
+ {% load static %}
+
+{% block styles%}
+    <link rel="stylesheet" href="{%static 'styles/style__catalog.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/style_size_chart.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/style_shipping_payment.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/style_product.css'%}">
+{% endblock %}
+{% block title %} {{product.product_model}} {{product.color}} {% endblock %}
+
+    {% block nav %}
+        <a href="/catalog"> Catalog</a>
+        <a href="/size_chart"> Size Chart</a>
+        <a href="##" data-scroll="#contats" role="button"> Contacts & Info</a>
+    {% endblock %}
+
+{% block content %}
+<section class="section-product">
+    <div class="container">
+        <header>
+            <h3>{{product.product_model}} {{english_name}}</h3>
+        </header>
+
+        <div class="product__wrap">
+            <div class="product__gallery">
+
+                <div class="slideshow-container">
+                    <div class="mySlides fade">
+                      <img id="productImg1" class="product__gallery-img" src="{{product.picture.url}}" alt="К1 Розовый">
+                    </div>
+
+                    <div class="mySlides fade">
+                      <img id="productImg2" class="product__gallery-img" src="{{product.picture2.url}}" alt="К1 Розовый">
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </div>
+            <div class="product__form">
+                <div class="product__title">
+                    <h1>{{product.product_model}} {{product.color}}</h1>
+                    <h2>{%if product.sale%} <strike style="margin-right: 8px">{{product.price}}</strike> {{product.sale}} грн.{%else%} {{product.price}} грн. {%endif%}</h2>
+                </div>
+                <div class="product__info">
+                    <form action ='/cart_add/' method="post">
+                        {%csrf_token%}
+                        <div class="product__size">
+                            {%for size in sizes %}
+                            <label class="custom-checkbox-size">
+                                <input type="radio" name="size" value="{{size}}" required>
+                                <span class="span__size" >{{size}}</span>
+                            </label>
+                            {%endfor%}
+                        </div>
+                        <button class='btn btn-product' type="submit" name="AddToCart" value="{{product.id}}">Добавить в корзину</button>
+                    </form>
+                    <button id="oneClickBtn" class="btn btn-product btn-one-click">Купить в один клик</button>
+                    <div class="prod__info__btn ">
+                        <i class="fas fa-box-open"></i>
+                        <button id="shippingBtn"><span>Доставка, оплата, возврат</span></button>
+                    </div>
+                    <div class="prod__info__btn">
+                        <i class="fas fa-ruler-vertical"></i>
+                        <button id="sizeBtn">Подобрать размер</button>
+                    </div>
+
+                </div> <!-- .product__info -->
+            </div> <!-- .product__form -->
+        </div> <!-- .product__wrap -->
+
+        <!-- Modal OneClick -->
+        <div id="oneClickModal" class="modal one__click__modal">
+            <div class="one__click__modal-content">
+                    <h2>Купить в один клик</h2>
+                    <span class="close one__click__close">&times;</span>
+                    <form class="write__us" action="/one_click_buing/" method="POST">
+                        {%csrf_token%}
+                        <input id="oneClickPhone" type="tel" class="write__us__input" name="one_click_phone" placeholder="Ваш телефон...       Формат: 067 938 38 89" required>
+                        <button type="submit" name="product_pk" value="{{product.id}}" onclick='oneClickDone()'> Заказать </button>
+                    </form>
+            </div>
+        </div>
+        <!-- The imgModal -->
+        <div id="myImgModal" class="modal img__modal">
+            <span class="img__close">&times;</span>
+
+            <img class="img__modal-content" id="img01">
+
+            <div id="caption"></div>
+        </div>
+
+        <!-- The ShippingModal -->
+         <div id="shippingModal" class="modal">
+            <div class="modal-content shipping">
+                <div class="modal-header shipping">
+                    <span class="close">&times;</span>
+                    <header class="les__height__shipping">
+                    <h3 class="size_chart-h3">Delivery, Payment & Return</h3>
+                    <h2 class="size_chart-h1">Доставка, оплата, возврат</h2>
+                    </header>
+                </div>
+                <div class="modal-body shipping">
+                    <div class="buying__info__wrap">
+
+                        <p class="сase strong" style="font-size: 20px">Способы доставки:</p>
+                        <div class="solution">
+                            <p>Доставка «Укрпошта». Только для розничных покупателей и только в регионы, где нет других ТК. Предоплата 100%.</p>
+                            <p></p>
+                        </div>
+                            <p class="сase strong">Доставка транспортными компаниями:</p>
+                        <div class="solution solution-ul">
+                            <p>Автолюкс</p>
+                            <p>Нова Пошта</p>
+                            <p>Почтоматы Приватбанка</p>
+                        </div>
+                        <p class="сase strong" style="font-size: 20px">Способы оплаты:</p>
+                        <div class="solution">
+                            <p>&#10102; Безналичный расчет. Для предпринимателей и юр. лиц.</p>
+                            <p>&#10103; Наложенный платеж. Только при покупке товара в розницу! Потребуется предоплата на карту банка 200 грн.</p>
+                            <p>&#10104; Оплата на расчетный счет.</p>
+                            <p>&#10105; 100%-я предоплата товара со скидкой. Товар со скидкой не подлежит обмен/возврату.</p>
+                        </div>
+
+                        <p class="сase">Если Вам не подошел выбранный размер</p>
+                        <div class="solution">
+                            <p>Обмен не подошедшего размера или возврат изделия предусмотрен только для розничных покупателей (покупка изделия по розничной цене). Пересылку товара оплачивает покупатель.</p>
+                        </div>
+                            <p class="сase strong">Возврату / обмену не подлежат:</p>
+                        <div class="solution solution-ul">
+                            <p>&#10102; Нательная одежда (платья, блузки).</p>
+                            <p>&#10103; Изделия белого цвета.</p>
+                            <p>&#10104; Изделия по распродаже/акции.</p>
+                        </div>
+                        <p class="сase">Если Вам не подошел выбранный размер или Вы решили вернуть купленное изделие, сообщите об этом в электронный почтовый ящик менеджеру. Вам придет письмо с реквизитами для отправки. Отправляйте товар только в той упаковке, в которой Вы получили посылку.</p>
+                        <p class="сase">Получив от Вас возврат (или обмен), проверив его целостность, мы возвращаем Вам деньги (или отправляем другой размер изделия). Обмен размера возможен только один раз.</p>
+                    </div>
+                </div> <!-- .modal-body -->
+            </div> <!-- .modal-content -->
+        </div> <!-- .modal -->
+
+        <!-- The sizeModal -->
+        <div id="sizeModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <header>
+                    <h3>Size chart</h3>
+                    <h2>Размерная таблица</h2>
+                    </header>
+                </div>
+                <div class="modal-body">
+                    <div class="les__height">
+                        <p class="strong">Эта таблица поможет Вам подобрать размер соответствующий нашим товарам.</p>
+                        <p class="strong">Снимайте мерки впритык по фигуре. Не делайте прибавки на свободу облегания.</p>
+                        <h2>Пример:</h2>
+                        <p>Если Вы сняли мерки с Вашей фигуры без прибавок ОГ-100см &#8212; ОТ-82см &#8212; ОБ-106см, то заказывайте изделие р.50. Не важно, пальто это, или блузка.</p>
+                        <p class="strong">Наши конструкторы делают необходимые прибавки на свободу облегания, установленные ГОСТами Украины.</p>
+                    </div>
+                    <h2> Размеры от 38 до 56 </h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>38</th>
+                                <th>40</th>
+                                <th>42</th>
+                                <th>44</th>
+                                <th>46</th>
+                                <th>48</th>
+                                <th>50</th>
+                                <th>52</th>
+                                <th>54</th>
+                                <th>56</th>
+                            </tr>
+                            <tr>
+                                <td>Обх.груди</td>
+                                <td>76</td>
+                                <td>80</td>
+                                <td>84</td>
+                                <td>88</td>
+                                <td>92</td>
+                                <td>96</td>
+                                <td>100</td>
+                                <td>104</td>
+                                <td>108</td>
+                                <td>112</td>
+                            </tr>
+                            <tr>
+                                <td>Обх.талии</td>
+                                <td>58</td>
+                                <td>62</td>
+                                <td>66</td>
+                                <td>70</td>
+                                <td>74</td>
+                                <td>78</td>
+                                <td>82</td>
+                                <td>86</td>
+                                <td>92</td>
+                                <td>98</td>
+                            </tr>
+                            <tr>
+                                <td>Обх.бедер</td>
+                                <td>82</td>
+                                <td>86</td>
+                                <td>90</td>
+                                <td>94</td>
+                                <td>98</td>
+                                <td>102</td>
+                                <td>106</td>
+                                <td>110</td>
+                                <td>116</td>
+                                <td>122</td>
+                            </tr>
+                            <tr class="table_last">
+                                <td></td>
+                                <td>XXS</td>
+                                <td>XS</td>
+                                <td>S</td>
+                                <td>M</td>
+                                <td>M</td>
+                                <td>L</td>
+                                <td>L</td>
+                                <td>XL</td>
+                                <td>XXL</td>
+                                <td>XXL</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!-- .modal-body -->
+            </div> <!-- .modal-content -->
+        </div> <!-- .modal -->
+    </div> <!-- .container-->
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="product__description">
+            <h2>Описание</h2>
+            <p class="strong">Состав ткани: {{product.fabric_structure}}</p>
+            <p>{{product.description}}<p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+        <script src="{%static 'js/product.js'%}"></script>
+{% endblock %}

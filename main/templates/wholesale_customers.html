@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{%static 'styles/style_size_chart.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/style_shipping_payment.css'%}">
+{% endblock %}
+{% block title %} Size Chart {% endblock %}
+
+    {% block nav %}
+        <a href="/catalog"> Catalog</a>
+        <a href="/size_chart"> Size Chart</a>
+        <a href="##" data-scroll="#contats" role="button"> Contacts & Info</a>
+    {% endblock %}
+
+{% block content %}
+ <section class="section-size_chart">
+            <div class="container">
+                <header>
+                    <h3 class="size_chart-h3">Wholesale Customers</h3>
+                    <h1 class="size_chart-h1">Оптовым клиентам</h1>
+                </header>
+                <div class="buying__info__wrap">
+                    <p class="сase strong" style="font-size: 20px">Lorem ipsum dolor</p>
+                    <div class="solution">
+                        <p>Vitae suscipit tellus mauris a diam maecenas sed. Viverra ipsum nunc aliquet bibendum enim. Elementum eu facilisis sed odio morbi quis commodo odio aenean:</p>
+
+                    </div>
+                        <p class="сase strong">Diam vulputate ut pharetra sit amet aliquam id:</p>
+                    <div class="solution solution-ul">
+                        <ul>
+                            <li>Condimentum vitae sapien pellentesque habitant</li>
+                            <li>Libero id faucibus nisl tincidunt eget nullam</li>
+                            <li>Ut tristique et egestas quis</li>
+                        </ul>
+                    </div>
+                    <p class="сase strong" style="font-size: 20px">Neque vitae pellentesque nec:</p>
+                    <div class="solution">
+                        <ul>
+                            <li> Bibendum arcu vitae elementum curabitur</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+                            <li>Bibendum arcu vitae elementum curabitur vitae</li>
+                            <li>A scelerisque purus semper eget duis at</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+{% block scripts %} {% endblock %}

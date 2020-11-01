@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{%static 'styles/style_thanks_for_buying.css'%}">
+{% endblock %}
+{% block title %} Thanks for buing {% endblock %}
+
+    {% block nav %}
+        <a href="/catalog"> Catalog</a>
+        <a href="/size_chart"> Size Chart</a>
+        <a href="##" data-scroll="#contats" role="button"> Contacts & Info</a>
+    {% endblock %}
+
+{% block content %}
+ <section class="section-thanks">
+            <div class="container">
+                <header>
+                    <h3>Thank you for your purchase</h3>
+                    <h1>Спасибо за покупку!</h1>
+                </header>
+                <h4>Информация о заказе:</h4>
+                <div class="thanks__row__wrap">
+                    <div class="thanks__col__wrap wrap1">
+                        {%for item in products%}
+                        <div class="col">
+                            <div class="product_item">
+                                <img src="{{item.picture.url}}" alt="" />
+                                <p class="strong">{{item.product_model}} {{item.color}}</p>
+                                <p>Размер: <span class="strong"> {{item.size}} </span></p>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <div class="thanks__col__wrap wrap2 ">
+                        {%for item in quantities%}
+                        <div class="col">
+                            <p><span class="strong">{{item}} шт.</span></p>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <div class="thanks__col__wrap wrap2 ">
+                        {%for item in order_products%}
+                        <div class="col">
+                            <p class="strong">&#8372; {{item}} </p>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    <div class="thanks__col__wrap wrap3">
+                        <div class=" wrap3__info">
+                            <h2>Спасибо за заказ</h2>
+                            <p>Номер заказа: <span class="strong">{{order.id}}</span></p>
+                            <p>Дата: <span class="strong">{{date}}</span> </p>
+                            <p class="border">Всего: <span class="strong">{{order.price}}</span></p>
+
+                            <p>Фио: <span class="strong">{{order.customer}}</span></p>
+                            <p>Доставка: <span class="strong">{{order.shipping_by}}</span></p>
+                            <p>Адресс: <span class="strong">{{order.address}}</span></p>
+                            {%if order.details%}
+                            <p>Примечания: <span class="strong">{{order.details}}</span></p>
+                            {%endif%}
+                        </div>
+                        <div>
+                            <a class="btn btn-go__main" href="/">На главную...</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+{% block scripts %} {% endblock %}
