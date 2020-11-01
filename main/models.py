@@ -30,8 +30,8 @@ class ProductModel(models.Model):
     description = models.TextField()
     sale = models.PositiveSmallIntegerField(default=None, null=True, validators=[MaxValueValidator(600)],
                                             blank=True, verbose_name='Цена со скидкой')
-    picture = models.ImageField(upload_to='products', verbose_name='Главная картинка')
-    picture2 = models.ImageField(upload_to='products', blank=True, null=True)
+#     picture = models.ImageField(upload_to='products', verbose_name='Главная картинка')
+#     picture2 = models.ImageField(upload_to='products', blank=True, null=True)
 
     class Meta:
         verbose_name = "Товар"
