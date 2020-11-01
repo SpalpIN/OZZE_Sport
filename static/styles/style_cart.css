@@ -1,0 +1,156 @@
+.section-cart {
+    text-align: center;
+}
+
+.cart__products {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.cart__products__item {
+    margin: 15px 40px 30px;
+    width: 25%;
+    color: #333;
+}
+
+.cart__products__item img {
+    object-fit: cover;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px -4px #000000;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+}
+
+.cart__products__item img:hover {opacity: 0.7;}
+
+.cart__products__item h4{
+    margin-top: 10px;
+    color: #333;
+    font-size: 20px;
+}
+
+.btn-cart {
+    background-color: transparent;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    box-shadow: 0 2px 9px -4px #000000;
+    cursor: pointer;
+    color: #333;
+
+    transition: background-color .25s linear,
+    color 0.25s linear,
+    padding 0.25s linear .2s;
+}
+
+.btn-cart:hover {
+    background-color: #333;
+    color: #95e1d3;
+    padding: 10px 40px;
+}
+
+.btn-cart:focus {
+    outline: none;
+    opacity: 0.9;
+}
+
+
+.continue {
+    margin: 20px 0 15px;
+}
+
+.btn-continue {
+    text-decoration: none;
+    background-color: #92fe9d;
+}
+
+.btn-continue:hover {
+    color: #92fe9d;
+}
+
+
+
+@media (max-width: 1200px) {
+    .cart__products__item {
+        margin: 15px 30px 30px;
+    }
+
+    .cart__products__item img {
+        height: 350px;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .cart__products__item {
+        margin: 15px 20px 20px;
+    }
+
+    .cart__products__item img {
+        height: 300px;
+    }
+}
+
+/* Small devices (landscape phones, less than 775px */
+@media (max-width: 774.98px) {
+    .cart__products__item {
+        margin: 25px 15px 10px;
+        width: 35%;
+    }
+
+    .cart__products__item img {
+        height: 340px;
+    }
+
+    .cart__products__item h4{
+        font-size: 18px;
+    }
+
+    .cart__products__item h3{
+        font-size: 22px;
+    }
+}
+
+/* Small devices (landscape phones, less than 775px */
+@media (max-width: 670px) {
+    .cart__products__item img {
+        height: 290px;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .cart__products__item {
+        width: 40%;
+    }
+
+    .cart__products__item img {
+        height: 220px;
+    }
+
+    .cart__products__item h3{
+        font-size: 18px;
+    }
+
+    .cart__products__item h4{
+        font-size: 14px;
+    }
+
+    .cart__products__item h5{
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 320.98px) {
+
+    .cart__products__item img {
+        height: 190px;
+    }
+}
