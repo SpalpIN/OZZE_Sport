@@ -1,0 +1,7 @@
+fakeredis==1.5.2
+flake8==3.9.2
+flake8-import-order==0.18.1
+flake8-print==4.0.0
+pytest==6.2.4
+pytest-mock==3.6.1
+pytest-postgresql==3.0.0

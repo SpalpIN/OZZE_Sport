@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+
+exclude = env, store/migrations/
+import-order-style = google
+application_import_names = store
