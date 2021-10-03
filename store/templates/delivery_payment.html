@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{%static 'styles/style_size_chart.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/style_shipping_payment.css'%}">
+{% endblock %}
+{% block title %} Size Chart {% endblock %}
+
+    {% block nav %}
+        <a href="/catalog"> Catalog</a>
+        <a href="/size_chart"> Size Chart</a>
+        <a href="##" data-scroll="#contats" role="button"> Contacts & Info</a>
+    {% endblock %}
+
+{% block content %}
+ <section class="section-size_chart">
+            <div class="container">
+                <header>
+                    <h3 class="size_chart-h3">Delivery & Payment</h3>
+                    <h1 class="size_chart-h1">Доставка и оплата</h1>
+                </header>
+                <div class="buying__info__wrap">
+                    <p class="сase strong" style="font-size: 20px">Способы доставки:</p>
+                    <div class="solution">
+                        <p>Доставка «Укрпошта». Только для розничных покупателей и только в регионы, где нет других ТК. Предоплата 100%.</p>
+                    </div>
+                        <p class="сase strong">Доставка транспортными компаниями:</p>
+                    <div class="solution solution-ul">
+                        <ul>
+                            <li>Автолюкс</li>
+                            <li>Нова Пошта</li>
+                            <li>Почтоматы Приватбанка</li>
+                        </ul>
+                    </div>
+                    <p class="сase strong" style="font-size: 20px">Способы оплаты:</p>
+                    <div class="solution">
+                        <ul>
+                            <li>Безналичный расчет. Для предпринимателей и юр. лиц.</li>
+                            <li>Наложенный платеж. Только при покупке товара в розницу! Потребуется предоплата на карту банка 200 грн.</li>
+                            <li>Оплата на расчетный счет.</li>
+                            <li>100%-я предоплата товара со скидкой. Товар со скидкой не подлежит обмен/возврату.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+{% block scripts %} {% endblock %}

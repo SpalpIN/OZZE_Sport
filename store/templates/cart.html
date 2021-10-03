@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block styles%}
+    <link rel="stylesheet" href="{%static 'styles/style_cart.css'%}">
+{% endblock %}
+{% block title %} Size Chart {% endblock %}
+
+    {% block nav %}
+        <a href="/catalog"> Catalog</a>
+        <a href="/size_chart"> Size Chart</a>
+        <a href="##" data-scroll="#contats" role="button"> Contacts & Info</a>
+    {% endblock %}
+
+{% block content %}
+
+ <section class="section-cart">
+     <div class="container">
+         {%if empty %}
+            <h1>Похоже в вашей корзине еще нет товаров :(</h1>
+            <h3>Вперед за покупками!</h3>
+            <div class="continue">
+                <a href="/catalog" type="button" class="btn-cart btn-continue"> Каталог</a>
+            </div>
+         {%else%}
+        <div class="cart__products">
+        {%for item in products%}
+            <div class="cart__products__item">
+                <a href="/products/{{item.id}}/"> <img src="{{item.picture.url}}" alt="" /></a>
+                <h4>{{item.product_model}} - {{item.color}}</h4>
+                <h5>Size: {{item.size}}</h5>
+                <h3>{{item.price}}</h3>
+
+                <form action ='/cart_del/' method="post">
+                    {%csrf_token%}
+                    <button class="btn-cart" type="submit" name="del_from_cart" value="{{item.id}} {{item.size}}">Удалить</button>
+                </form>
+            </div>
+        {%endfor%}
+
+        </div>
+        <div class="continue">
+            <a href="/checkout" type="button" class="btn-cart btn-continue"> Продолжить</a>
+        </div>
+         {%endif%}
+    </div>
+ </section>
+
+
+
+
+{% endblock %}
+
+{% block scripts %} {% endblock %}

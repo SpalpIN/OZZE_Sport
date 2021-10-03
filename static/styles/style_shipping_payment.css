@@ -1,0 +1,129 @@
+
+.section-size_chart header {
+    margin-bottom: 0;
+}
+
+.buying__info__wrap {
+    margin: 0 auto 40px;
+    width: 80%;
+    text-align: center;
+}
+
+.сase {
+    font-size: 18px;
+}
+
+.solution {
+    width: 70%;
+    padding: 5px 5px;
+    background-color: #333;
+    color: #95e1d3;
+    border-radius: 25px;
+    margin: 0 auto;
+}
+
+.solution ul {
+    list-style: square url("#") inside;
+    line-height: 2;
+    margin: 16px auto;
+    padding-left: 0;
+}
+
+.solution-ul {
+    width: 50%;
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 1200px) {
+    .size_chart-h1::after {
+        margin: 10px auto 20px;
+    }
+
+    .buying__info__wrap {
+        width: 90%;
+    }
+
+    .сase {
+        font-size: 16px;
+    }
+
+    .solution {
+        width: 65%;
+        padding: 5px 0;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+
+    .solution p {
+        margin: 8px 8px;
+    }
+
+    .solution ul {
+        line-height: 1.6;
+        margin: 8px auto;
+    }
+
+    .solution-ul {
+        width: 40%;
+    }
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .section-size_chart header {
+        margin-top: 10px;
+    }
+
+    .buying__info__wrap {
+        margin: 0 auto 0;
+        width: 90%;
+    }
+
+    .сase {
+        font-size: 16px;
+    }
+
+    .solution {
+        width: 70%;
+        padding: 1px 0;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+
+    .solution p {
+        margin: 8px 8px;
+    }
+
+    .solution ul {
+        margin: 8px 8px;
+    }
+
+    .solution-ul {
+        width: 50%;
+    }
+}
+
+/* Small devices (landscape phones, less than 775px */
+@media (max-width: 774.98px) {
+
+    .size_chart-h1::after {
+        margin: 5px auto 10px;
+    }
+    .сase {
+        font-size: 14px;
+    }
+
+    .solution {
+        font-size: 12px;
+    }
+
+    .solution-ul {
+        width: 55%;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .solution {
+        width: 100%;
+    }
+}
